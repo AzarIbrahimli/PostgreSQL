@@ -244,5 +244,37 @@ public class Db_Functions {
         }
     }
 
+    public void groupByAddress(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select address,count(*) as person from %s group by address order by count(*) desc", tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getString("person"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void groupBySalary(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select address,sum(salary) as sum from %s group by address having sum(salary)>2000 order by sum(salary) ", tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getString("sum"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
     }
 
