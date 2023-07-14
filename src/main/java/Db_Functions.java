@@ -17,7 +17,7 @@ public class Db_Functions {
     public void createTable(Connection conn, String tableName) {
         Statement statement;
         try {
-            String query = "create table " + tableName + "(empid SERIAL, name varchar(20), address varchar(60),primary key(empid));";
+            String query = "create table " + tableName + "(empid SERIAL, name varchar(20), address varchar(60), salary integer, primary key(empid));";
             statement = conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("Table created");
@@ -26,13 +26,13 @@ public class Db_Functions {
         }
     }
 
-    public void insertTable(Connection conn, String tableName, String name, String address) {
+    public void insertTable(Connection conn, String tableName, String name, String address, int salary) {
         Statement statement;
         try {
-            String query = String.format("insert into %s(name, address) values ('%s', '%s')", tableName, name, address);
+            String query = String.format("insert into %s(name, address, salary) values ('%s', '%s', %d)", tableName, name, address, salary);
             statement = conn.createStatement();
             statement.executeUpdate(query);
-            System.out.printf("%s and %s inserted to %s", name, address, tableName);
+            System.out.printf("%s, %s and %d inserted to %s", name, address,salary,  tableName);
             System.out.println("Index selected");
         } catch (Exception e) {
             System.out.println(e);
@@ -49,7 +49,8 @@ public class Db_Functions {
             while (resultSet.next()){
                 System.out.print(resultSet.getInt("empid")+ "  ");
                 System.out.print(resultSet.getString("name")+ "  ");
-                System.out.print(resultSet.getString("address"));
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getInt("salary"));
             }
         }catch (Exception e){
             System.out.println(e);
@@ -66,8 +67,28 @@ public class Db_Functions {
             while (resultSet.next()){
                 System.out.print(resultSet.getInt("empid")+ "  ");
                 System.out.print(resultSet.getString("name")+ "  ");
-                System.out.println(resultSet.getString("address"));
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getInt("salary"));
             }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void searchLike(Connection conn, String tableName, String input){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select * from %s where name like '%%%s%%'", tableName,input);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getInt("empid") + "  ");
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getInt("salary"));
+            }
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -83,7 +104,8 @@ public class Db_Functions {
             while (resultSet.next()){
                 System.out.print(resultSet.getString("empid") + "  ");
                 System.out.print(resultSet.getString("name")+ "  ");
-                System.out.println(resultSet.getString("address"));
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getInt("salary"));
 
             }
         }catch (Exception e) {
@@ -123,6 +145,100 @@ public class Db_Functions {
             statement = conn.createStatement();
             statement.executeUpdate(query);
             System.out.printf("Table %s deleted", tableName);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void countTable(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select Count(*) as count from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                System.out.print(resultSet.getInt("count"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void sumSalary(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select sum(salary) as sum from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                System.out.print(resultSet.getInt("sum"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void averageSalary(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select avg(salary) as avg from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                Float result =resultSet.getFloat("avg");
+                System.out.printf("Average salary: %.2f\n",result);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void minSalary(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select min(salary) as min from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                Float result =resultSet.getFloat("min");
+                System.out.printf("Minimum salary: %.2f\n",result);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void maxSalary(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select max(salary) as max from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                Float result =resultSet.getFloat("max");
+                System.out.printf("Maximum salary: %.2f\n",result);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void maxMinSalaryDifference(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("select max(salary)- min(salary) as diff from  %s",tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                Float result =resultSet.getFloat("diff");
+                System.out.printf("Max and min salary difference: %.2f\n",result);
+            }
         }catch (Exception e){
             System.out.println(e);
         }
