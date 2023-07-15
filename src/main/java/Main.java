@@ -4,13 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Db_Functions dbFunctions = new Db_Functions();
         Connection conn = dbFunctions.connectDb("db_initial","postgres", "postgresql");
-        //dbFunctions.createTable(conn,"test");
+        //dbFunctions.createTable(conn,"job");
         //dbFunctions.insertTable(conn,"employee","Elvin", "Mingechaur",2675);
         //dbFunctions.searchByIndex(conn,"employee",2);
         //dbFunctions.updateName(conn,"employee", "Vugar","Vuqar");
         //dbFunctions.searchByIndex(conn,"employee",2);
         //dbFunctions.searchByName(conn,"employee","Azar");
-        //dbFunctions.printAll(conn,"employee");
         //dbFunctions.deleteData(conn,"employee", "Mingechaur");
         //dbFunctions.deleteTable(conn,"test");
         //dbFunctions.searchLike(conn,"employee","r");
@@ -21,7 +20,16 @@ public class Main {
         //dbFunctions.maxSalary(conn,"employee");
         //dbFunctions.maxMinSalaryDifference(conn,"employee");
         //dbFunctions.groupByAddress(conn,"employee");
-        dbFunctions.groupBySalary(conn,"employee");
+        //dbFunctions.groupBySalary(conn,"employee");
+        //dbFunctions.highestPaidEmployee(conn,"employee");
+        //dbFunctions.highestPaidEmployee(conn,"employee","San Francisco");
+        //dbFunctions.updateSalaryByAddress(conn,"employee", "San Francisco",4000);
+        //dbFunctions.searchEmployeeByJob(conn, "employee", "engineer");
+
+        //dbFunctions.increaseSalaryByJob(conn,"employee","engineer",10);
+
+
+        dbFunctions.printAll(conn,"employee");
 
     }
 }

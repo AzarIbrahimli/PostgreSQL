@@ -105,7 +105,8 @@ public class Db_Functions {
                 System.out.print(resultSet.getString("empid") + "  ");
                 System.out.print(resultSet.getString("name")+ "  ");
                 System.out.print(resultSet.getString("address") + "  ");
-                System.out.println(resultSet.getInt("salary"));
+                System.out.print(resultSet.getInt("salary") + "  ");
+                System.out.println(resultSet.getInt("job"));
 
             }
         }catch (Exception e) {
@@ -275,6 +276,87 @@ public class Db_Functions {
             System.out.println(e);
         }
     }
+
+    public void highestPaidEmployee(Connection conn, String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s where salary = (select max(salary) from %s)",tableName,tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getInt("empid") + "  ");
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getFloat("salary"));}
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void highestPaidEmployee(Connection conn, String tableName, String address){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s where address = '%s' and salary = (select max(salary) from %s)",tableName, address, tableName);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getInt("empid") + "  ");
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getFloat("salary"));}
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void updateSalaryByAddress(Connection conn, String tableName, String address, int salary){
+        Statement statement;
+        try {
+            String query =String.format("update %s set salary = %d where address = '%s'", tableName, salary, address);
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Updated");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void searchEmployeeByJob(Connection conn, String tableName, String job){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s where job = (select id from job where name = '%s')", tableName, job);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getInt("empid") + "  ");
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.print(resultSet.getFloat("salary") + "  ");
+                System.out.println(resultSet.getInt("job") + "  ");
+
+
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+//    public void increaseSalaryByJob(Connection conn, String tableName, String jobName, int percentage){
+//        Statement statement;
+//        try {
+//            String query = String.format("update %s set salary = salary * 1.1 where job = (select id from job where name = '%s') ", tableName, jobName);
+//            statement = conn.createStatement();
+//            statement.executeUpdate(query);
+//            System.out.println("Salary updated");
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//    }
 
     }
 
