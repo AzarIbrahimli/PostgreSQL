@@ -324,6 +324,18 @@ public class Db_Functions {
         }
     }
 
+    public void increaseSalaryByName(Connection conn, String tableName, String name, int salary){
+        Statement statement;
+        try {
+            String query = String.format("update %s set salary = salary + salary*%d/100 where name = '%s'", tableName, salary, name);
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Updated");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
     public void searchEmployeeByJob(Connection conn, String tableName, String job){
         Statement statement;
         ResultSet resultSet;
@@ -349,7 +361,7 @@ public class Db_Functions {
 //    public void increaseSalaryByJob(Connection conn, String tableName, String jobName, int percentage){
 //        Statement statement;
 //        try {
-//            String query = String.format("update %s set salary = salary * 1.1 where job = (select id from job where name = '%s') ", tableName, jobName);
+//            String query = String.format("update %s set salary = salary = salary + salary*%d/100 where job = (select id from job where name = '%s') ", tableName, jobName);
 //            statement = conn.createStatement();
 //            statement.executeUpdate(query);
 //            System.out.println("Salary updated");
