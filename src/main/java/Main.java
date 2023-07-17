@@ -25,11 +25,11 @@ public class Main {
         //dbFunctions.highestPaidEmployee(conn,"employee","San Francisco");
         //dbFunctions.updateSalaryByAddress(conn,"employee", "San Francisco",4000);
         //dbFunctions.searchEmployeeByJob(conn, "employee", "engineer");
-
         //dbFunctions.increaseSalaryByJob(conn,"employee","engineer",10);
         //dbFunctions.increaseSalaryByName(conn,"employee","Vuqar",10);
+        //dbFunctions.searchEmployeeByAddressByJob(conn,"employee", "Baku", "teacher");
 
-        dbFunctions.printAll(conn,"employee");
+        //dbFunctions.printAll(conn,"employee");
 
     }
 }
