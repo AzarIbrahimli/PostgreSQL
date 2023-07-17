@@ -1,3 +1,4 @@
+import java.lang.reflect.Type;
 import java.sql.*;
 
 public class Db_Functions {
@@ -389,6 +390,17 @@ public class Db_Functions {
         }
     }
 
+    public void truncateTable(Connection conn, String tableName){
+        Statement statement;
+        try {
+            String query = String.format("truncate table %s", tableName);
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Truncated");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     }
 

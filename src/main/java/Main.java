@@ -28,6 +28,7 @@ public class Main {
         //dbFunctions.increaseSalaryByJob(conn,"employee","engineer",10);
         //dbFunctions.increaseSalaryByName(conn,"employee","Vuqar",10);
         //dbFunctions.searchEmployeeByAddressByJob(conn,"employee", "Baku", "teacher");
+        //dbFunctions.truncateTable(conn,"test");
 
         //dbFunctions.printAll(conn,"employee");
 
