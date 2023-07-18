@@ -402,5 +402,38 @@ public class Db_Functions {
         }
     }
 
+    public void innerJoin(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select employee.name,address,job.name as jobName from employee inner join job on job = id");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getString("jobName"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    public void countByDepartment(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select name, count(*) as count from program inner join department on program.program_dep = department.id group by name");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getString("name")+ "  ");
+                System.out.println(resultSet.getString("count"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
     }
 
