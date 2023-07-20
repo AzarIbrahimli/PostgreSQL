@@ -31,7 +31,7 @@ public class Main {
         //dbFunctions.truncateTable(conn,"test");
         //dbFunctions.innerJoin(conn);
         //dbFunctions.countByDepartment(conn);
-        //dbFunctions.printAll(conn,"employee");
+        dbFunctions.printAll(conn,"employee");
 
     }
 }
