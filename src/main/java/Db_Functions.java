@@ -490,23 +490,250 @@ public class Db_Functions {
         }
     }
 
-//    public void crossJoin(Connection conn){
-//        Statement statement;
-//        ResultSet resultSet;
-//        try {
-//            String query = String.format("select employee.name, address, job.name as jn from employee cross join job ");
-//            statement = conn.createStatement();
-//            resultSet = statement.executeQuery(query);
-//            while(resultSet.next()){
-//                System.out.print(resultSet.getString("name") + "  ");
-//                System.out.print(resultSet.getString("address") + "  ");
-//                System.out.println(resultSet.getString("jn"));
-//
-//            }
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
+    public void crossJoin(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select employee.name, address, job.name as jn from employee cross join job ");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getString("jn"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void exceptTable(Connection conn,String tableNameOne, String tableNameTwo){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s except select * from %s",tableNameOne, tableNameTwo );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("id") + "  ");
+                System.out.println(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void intersectTable(Connection conn,String tableNameOne, String tableNameTwo){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s intersect select * from %s",tableNameOne, tableNameTwo );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("id") + "  ");
+                System.out.println(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void unionTable(Connection conn,String tableNameOne, String tableNameTwo){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select * from %s union select * from %s",tableNameOne, tableNameTwo );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("id") + "  ");
+                System.out.println(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void ascii(Connection conn,char sth){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select ASCII  ('%c') as result",sth);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("result") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void concat(Connection conn,String word1, String word2){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select CONCAT('%s', '%s') as con",word1, word2 );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("con") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void concatWS(Connection conn,String sth, String word1, String word2){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select CONCAT_WS('%s','%s', '%s') as con",sth,word1, word2 );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("con") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void left(Connection conn,String word1, int c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select left('%s', %d) as c",word1, c );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("c") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void right(Connection conn,String word1, int c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select right('%s', %d) as c",word1, c );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("c") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void length(Connection conn,String word){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select length('%s') as c",word);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getInt("c") + "  ");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void replace(Connection conn,String actual, String replace,String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select id,replace(name, '%s', '%s') as name from %s",actual, replace, tableName );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getInt("id") + "  ");
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void reverseName(Connection conn,String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select id, reverse(name) as name from %s",tableName );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getInt("id") + "  ");
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void substring(Connection conn,String String, int from, int count){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select substring('%s', %d, %d) as result",String, from, count );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("result"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void lowerName(Connection conn,String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select lower(name) as name from %s", tableName );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void upperName(Connection conn,String tableName){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select upper(name) as name from %s", tableName );
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+
+
+
+
+
+
 
 
 

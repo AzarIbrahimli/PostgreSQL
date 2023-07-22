@@ -35,6 +35,17 @@ public class Main {
         //dbFunctions.rightJoin(conn);
         //dbFunctions.fullJoin(conn);
         //dbFunctions.crossJoin(conn);
+        //dbFunctions.ascii(conn,'A');
+        //dbFunctions.concat(conn,"Azar ","Ibrahimli");
+        //dbFunctions.concatWS(conn,"_","Azar","Ibrahimli");
+        //dbFunctions.left(conn,"Azerbaijan",4);
+        //dbFunctions.right(conn,"Azerbaijan",3);
+        //dbFunctions.length(conn,"Azerbaijan");
+        //dbFunctions.replace(conn,"v","d","job");
+        //dbFunctions.reverseName(conn,"job");
+        //dbFunctions.substring(conn,"Azar Ibrahimli", 2,3);
+        //dbFunctions.lowerName(conn,"job");
+        //dbFunctions.upperName(conn,"job");
 
 
 
