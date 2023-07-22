@@ -27,13 +27,13 @@ public class Db_Functions {
         }
     }
 
-    public void insertTable(Connection conn, String tableName, String name, String address, int salary) {
+    public void insertTable(Connection conn, String tableName, String name, String address, int salary, int job) {
         Statement statement;
         try {
-            String query = String.format("insert into %s(name, address, salary) values ('%s', '%s', %d)", tableName, name, address, salary);
+            String query = String.format("insert into %s(name, address, salary, job) values ('%s', '%s', %d, %d)", tableName, name, address, salary,job);
             statement = conn.createStatement();
             statement.executeUpdate(query);
-            System.out.printf("%s, %s and %d inserted to %s", name, address,salary,  tableName);
+            System.out.printf("%s, %s, %d and %d inserted to %s", name, address,salary,job,tableName);
             System.out.println("Index selected");
         } catch (Exception e) {
             System.out.println(e);
@@ -435,5 +435,80 @@ public class Db_Functions {
             System.out.println(e);
         }
     }
+
+    public void leftJoin(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select program_id, program_name, name from program left join department on id=program_dep");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getInt("program_id") + "  ");
+                System.out.print(resultSet.getString("program_name") + "  ");
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
+
+    public void rightJoin(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select program_id, program_name, name from program right join department on id=program_dep");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getInt("program_id") + "  ");
+                System.out.print(resultSet.getString("program_name") + "  ");
+                System.out.println(resultSet.getString("name"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void fullJoin(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select employee.name, address, job.name as jn from employee full join job on employee.job = job.id");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getString("address") + "  ");
+                System.out.println(resultSet.getString("jn"));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+//    public void crossJoin(Connection conn){
+//        Statement statement;
+//        ResultSet resultSet;
+//        try {
+//            String query = String.format("select employee.name, address, job.name as jn from employee cross join job ");
+//            statement = conn.createStatement();
+//            resultSet = statement.executeQuery(query);
+//            while(resultSet.next()){
+//                System.out.print(resultSet.getString("name") + "  ");
+//                System.out.print(resultSet.getString("address") + "  ");
+//                System.out.println(resultSet.getString("jn"));
+//
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//    }
+
+
+
+}
 
