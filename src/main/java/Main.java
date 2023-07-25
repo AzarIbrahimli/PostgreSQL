@@ -46,8 +46,16 @@ public class Main {
         //dbFunctions.substring(conn,"Azar Ibrahimli", 2,3);
         //dbFunctions.lowerName(conn,"job");
         //dbFunctions.upperName(conn,"job");
-
-
+        //dbFunctions.abs(conn,-5);
+        //dbFunctions.ceil(conn, 9.2);
+        //dbFunctions.floor(conn, 9.2);
+        //dbFunctions.pi(conn);
+        //dbFunctions.power(conn,2,4);
+        //dbFunctions.random(conn);
+        //dbFunctions.round(conn,18.12545,2);
+        //dbFunctions.sign(conn,-9);
+        //dbFunctions.sqrt(conn,363);
+        //dbFunctions.log(conn,50);
 
         //dbFunctions.printAll(conn,"employee");
 

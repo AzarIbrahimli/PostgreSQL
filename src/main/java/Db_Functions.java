@@ -728,12 +728,160 @@ public class Db_Functions {
         }
     }
 
+    public void abs(Connection conn, int c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select abs(%d) as abs",c);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("abs"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void ceil(Connection conn, double c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select ceil(%f) as ceil",c);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("ceil"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void floor(Connection conn, double c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select floor(%f) as floor",c);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("floor"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void pi(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select pi() as pi");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getDouble("pi"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void power(Connection conn, int a, int b){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select power(%d, %d) as result",a,b);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("result"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void random(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select Random() as random");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getDouble("random"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
+    public void round(Connection conn, double d, int c){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select Round(%f, %d) as round",d,c);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getDouble("round"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void sign(Connection conn, double d){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select sign(%f) as sign",d);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if(resultSet.getDouble("sign")>0){
+                    System.out.println("Positive");
+                } else if (resultSet.getDouble("sign")==0) {
+                    System.out.println("Zero");
+                }
+                else System.out.println("Negative");
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void sqrt(Connection conn, double d){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select Sqrt(%f) as result",d);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getDouble("result"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void log(Connection conn, double d){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select Log(%f) as result",d);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getDouble("result"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
 
 
