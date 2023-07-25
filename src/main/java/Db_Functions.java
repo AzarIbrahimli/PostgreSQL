@@ -883,6 +883,85 @@ public class Db_Functions {
         }
     }
 
+    public void currentDate(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select Current_Date as date");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getDate("date"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void currentTime(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select current_time as time");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getTime("time"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void getNow(Connection conn){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select now() as now");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("now"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void getAge(Connection conn,String date){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select age(timestamp '%s') as age", date);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("age"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void getRegistrationDate(Connection conn, String date){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select name, date, age(now(),date) as diff from books");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getString("name") + "  ");
+                System.out.print(resultSet.getDate("date") + "  ");
+                System.out.println(resultSet.getString("diff"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+
+
 
 
 }

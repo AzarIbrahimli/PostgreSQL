@@ -3,7 +3,7 @@ import java.sql.Connection;
 public class Main {
     public static void main(String[] args) {
         Db_Functions dbFunctions = new Db_Functions();
-        Connection conn = dbFunctions.connectDb("db_initial","postgres", "postgresql");
+        Connection conn = dbFunctions.connectDb("DbUniversity","postgres", "postgresql");
         //dbFunctions.createTable(conn,"job");
         //dbFunctions.insertTable(conn,"employee","Mahammad", "Praga",2975,6);
         //dbFunctions.searchByIndex(conn,"employee",2);
@@ -56,6 +56,11 @@ public class Main {
         //dbFunctions.sign(conn,-9);
         //dbFunctions.sqrt(conn,363);
         //dbFunctions.log(conn,50);
+        //dbFunctions.currentDate(conn);
+        //dbFunctions.currentTime(conn);
+        //dbFunctions.getNow(conn);
+        //dbFunctions.getAge(conn,"07.27.1998");
+        //dbFunctions.getRegistrationDate(conn,"07.24.2023");
 
         //dbFunctions.printAll(conn,"employee");
 
