@@ -61,6 +61,8 @@ public class Main {
         //dbFunctions.getNow(conn);
         //dbFunctions.getAge(conn,"07.27.1998");
         //dbFunctions.getRegistrationDate(conn,"07.24.2023");
+        //dbFunctions.getLessonsWithLength(conn,12);
+        //dbFunctions.makeViewWithCheckOption(conn,11);
 
         //dbFunctions.printAll(conn,"employee");
 

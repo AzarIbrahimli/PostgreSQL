@@ -1,4 +1,3 @@
-import java.lang.reflect.Type;
 import java.sql.*;
 
 public class Db_Functions {
@@ -959,6 +958,38 @@ public class Db_Functions {
             System.out.println(e);
         }
     }
+
+    public void getLessonsWithLength(Connection conn, int length){
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            String query = String.format("select id, lessonname, limits, programid from lessons where length(lessonname)>12",length);
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                System.out.print(resultSet.getInt("id") + "  ");
+                System.out.print(resultSet.getString("lessonname") + "  ");
+                System.out.print(resultSet.getInt("limits") + "  ");
+                System.out.println(resultSet.getInt("programid"));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void makeViewWithCheckOption(Connection conn, int length){
+        Statement statement;
+        try {
+            String query = String.format("create or replace view view2 as select id, lessonname, limits, programid from lessons where length(lessonname)>%d with check option",length);
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Done");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+
 
 
 

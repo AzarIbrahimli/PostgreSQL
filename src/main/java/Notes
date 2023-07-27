@@ -1,0 +1,22 @@
+do $$
+declare x int:= 20;
+        y int:= 5;
+		z int;
+		sum int;
+		subtraction int;
+		multiplication int;
+		division int;
+begin
+        sum: = x+y;
+		subtraction: = x-y;
+		multiplication: = x*y;
+		division: = x/y;
+raise notice 'First: %',x;
+raise notice 'Second: %',y;
+raise notice 'Third: %',z;
+raise notice 'Sum: %',sum;
+raise notice 'Subtraction: %',subtraction;
+raise notice 'Multiplication: %',multiplication;
+raise notice 'Division: %',division;
+end $$
+-----------------------------
