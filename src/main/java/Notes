@@ -19,4 +19,16 @@ raise notice 'Subtraction: %',subtraction;
 raise notice 'Multiplication: %',multiplication;
 raise notice 'Division: %',division;
 end $$
------------------------------
+-------------------------------------
+#Count of lessons
+
+do $$
+declare sum int;
+begin
+sum:= (select count(*) from lessons);
+raise notice 'Count of lessons: %',sum;
+end $$
+
+------------------------------------
+
+
