@@ -31,4 +31,19 @@ end $$
 
 ------------------------------------
 
+select pg_sleep(5);
+select * from books
+
+-------------------------------------
+
+create or replace procedure test()
+language plpgsql
+as $$
+begin
+raise notice 'Start procedure';
+end $$
+
+call test()
+
+-------------------------------------
 

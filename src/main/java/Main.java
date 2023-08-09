@@ -3,7 +3,7 @@ import java.sql.Connection;
 public class Main {
     public static void main(String[] args) {
         Db_Functions dbFunctions = new Db_Functions();
-        Connection conn = dbFunctions.connectDb("DbUniversity","postgres", "postgresql");
+        Connection conn = dbFunctions.connectDb("db_initial","postgres", "postgresql");
         //dbFunctions.createTable(conn,"job");
         //dbFunctions.insertTable(conn,"employee","Mahammad", "Praga",2975,6);
         //dbFunctions.searchByIndex(conn,"employee",2);
